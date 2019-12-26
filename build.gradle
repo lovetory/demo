@@ -2,11 +2,17 @@ plugins {
     id 'org.springframework.boot' version '2.2.2.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
+    id 'com.google.cloud.tools.jib' version '1.8.0'
 }
 
 group = 'club.a2os'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+def dockerTag = "a2os/lovetory:"+version.toLowerCase()
+
+jib.from.image = "registry.cn-beijing.aliyuncs.com/a2os/java:11"
+jib.to.image = "registry.cn-beijing.aliyuncs.com/"+dockerTag
 
 configurations {
     developmentOnly
